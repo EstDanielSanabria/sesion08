@@ -24,6 +24,7 @@
 			MUL B Cajica	
 		**/
 
+		/// DECLARACION DE VARIABLES
 		var scene, aspect, camera, renderer;
 		var startTime = Date.now();
 		var cubo  = crearCubo(1);
@@ -31,6 +32,7 @@
 		var cubo3 = crearCubo(1);
 		var cuboMov = "0";
 
+		/// ESTABLECIMIENTO DE INTERVALO
 		var intervalo = setInterval(function(){
 			switch(cuboMov){
 				case "0" :
@@ -140,6 +142,7 @@
         renderer.render( scene, camera );
 	}
 
+	/// CREACION DE CUBOS
 	function crearCubo(lado){
 
 		var colorRd = new THREE.Color( 0xAA6666 );
@@ -163,10 +166,11 @@
 		//CREAR LOS MATERIALES
 		var material = new THREE.MeshBasicMaterial( { color: new THREE.Color( 0xFFFFFF ), vertexColors: THREE.FaceColors } );
 
-		//CREAR LOS OBJETOS
+		//RETORNAR LOS OBJETOS
 		return new THREE.Mesh( geometry, material );
 	}
 
+	/// DETERMINACION MATRIZ DE TRANSFORMACION
 	function transTS(s,t){
 		m = new THREE.Matrix4();
 		m.set(
