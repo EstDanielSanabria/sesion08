@@ -29,6 +29,45 @@
 		var cubo  = crearCubo(1);
 		var cubo2 = crearCubo(1);
 		var cubo3 = crearCubo(1);
+		var cuboMov = "0";
+
+		var intervalo = setInterval(function(){
+			switch(cuboMov){
+				case "0" :
+					cubo.applyMatrix(
+						transTS(
+							new THREE.Vector3(1,1,1),
+							new THREE.Vector3(0.5,0.5,0.5)
+						)
+					);
+					cuboMov = "1";
+					break;
+
+				case "1" : 
+					cubo2.applyMatrix(
+						transTS(
+							new THREE.Vector3(0.5,0.5,0.5),
+							new THREE.Vector3(1,2.5,1)
+						)
+					);
+					cuboMov = "2";
+					break;
+
+				case "2" : 
+					cubo3.applyMatrix(
+						transTS(
+							new THREE.Vector3(0.25,0.25,0.25),
+							new THREE.Vector3(2,6.5,2)
+						)
+					);
+					cuboMov = "3";
+					break;
+
+				default : 
+					clearInterval(intervalo);
+					break;
+			}
+		},3000);
 
 		init();
 		animate();
@@ -80,26 +119,6 @@
 			scene.add(cubo);
 			scene.add(cubo2);
 			scene.add(cubo3);
-			cubo.applyMatrix(
-				transTS(
-					new THREE.Vector3(1,1,1),
-					new THREE.Vector3(0.5,0.5,0.5)
-				)
-			);
-
-			cubo2.applyMatrix(
-				transTS(
-					new THREE.Vector3(0.5,0.5,0.5),
-					new THREE.Vector3(1,2.5,1)
-				)
-			);
-			
-			cubo3.applyMatrix(
-				transTS(
-					new THREE.Vector3(0.25,0.25,0.25),
-					new THREE.Vector3(2,6.5,2)
-				)
-			);
 
 			//MOVER LA CÁMARA
 			camera.position.x = 5;
@@ -114,9 +133,9 @@
     }
     
 	function render(){
-		var dtime = Date.now()-startTime;
-        camera.position.x = 10*Math.cos(dtime/10000);
-        camera.position.z = 10*Math.sin(dtime/10000);
+		var dtime =2*(Date.now()-startTime);
+        camera.position.x = 5*Math.cos(dtime/10000);
+        camera.position.z = 5*Math.sin(dtime/10000);
         camera.lookAt( 0, 0, 0 );
         renderer.render( scene, camera );
 	}
