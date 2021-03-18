@@ -122,8 +122,15 @@
 		return new THREE.Mesh( geometry, material );
 	}
 
-	function transTS(s, t){
-		
+	function transTS(s,t){
+		m = new THREE.Matrix4();
+		m.set(
+			t.x ,   0,   0, t.x * s.x,
+			0   , t.y,   0, t.y * s.y,
+			0   ,   0, t.z, t.z * s.z,
+			0   ,   0,   0,         1
+		);
+		return m;
 	}
 
     </script>
