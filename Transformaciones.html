@@ -26,6 +26,7 @@
 
 		var scene, aspect, camera, renderer;
 		var startTime = Date.now();
+		var cubo = crearCubo(1);
 
 		init();
 		animate();
@@ -74,7 +75,14 @@
 		  	scene.add( arrowX );	
 		  	scene.add( arrowY );	
 		  	scene.add( arrowZ );	
-			
+			scene.add(cubo);
+			cubo.applyMatrix(
+				transTS(
+					new THREE.Vector3(1,1,1),
+					new THREE.Vector3(0.5,0.5,0.5)
+				)
+			);
+
 			//MOVER LA CÁMARA
 			camera.position.x = 5;
 			camera.position.y = 10;	 
@@ -125,9 +133,9 @@
 	function transTS(s,t){
 		m = new THREE.Matrix4();
 		m.set(
-			t.x ,   0,   0, t.x * s.x,
-			0   , t.y,   0, t.y * s.y,
-			0   ,   0, t.z, t.z * s.z,
+			s.x ,   0,   0, t.x * s.x,
+			0   , s.y,   0, t.y * s.y,
+			0   ,   0, s.z, t.z * s.z,
 			0   ,   0,   0,         1
 		);
 		return m;
