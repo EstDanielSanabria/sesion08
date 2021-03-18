@@ -26,7 +26,9 @@
 
 		var scene, aspect, camera, renderer;
 		var startTime = Date.now();
-		var cubo = crearCubo(1);
+		var cubo  = crearCubo(1);
+		var cubo2 = crearCubo(1);
+		var cubo3 = crearCubo(1);
 
 		init();
 		animate();
@@ -70,14 +72,6 @@
             var arrowY = new THREE.ArrowHelper( y, origin, arrowSize, colorG );
             var arrowZ = new THREE.ArrowHelper( z, origin, arrowSize, colorB );
 		
-			var cubo2 = crearCubo(1);
-			cubo2.applyMatrix(
-				transTS(
-					new THREE.Vector3(1,1,1),
-					new THREE.Vector3(0.5,0.5,0.5)
-				)
-			);
-
 		  	//AGREGAR A LA ESCENA
             scene.add( gridHelperXZ );
 		  	scene.add( arrowX );	
@@ -85,13 +79,25 @@
 		  	scene.add( arrowZ );	
 			scene.add(cubo);
 			scene.add(cubo2);
+			scene.add(cubo3);
 			cubo.applyMatrix(
 				transTS(
-				/**	new THREE.Vector3(1,1,1),
+					new THREE.Vector3(1,1,1),
 					new THREE.Vector3(0.5,0.5,0.5)
-				**/
+				)
+			);
+
+			cubo2.applyMatrix(
+				transTS(
 					new THREE.Vector3(0.5,0.5,0.5),
 					new THREE.Vector3(1,2.5,1)
+				)
+			);
+			
+			cubo3.applyMatrix(
+				transTS(
+					new THREE.Vector3(0.25,0.25,0.25),
+					new THREE.Vector3(2,6.5,2)
 				)
 			);
 
